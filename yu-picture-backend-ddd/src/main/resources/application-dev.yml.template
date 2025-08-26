@@ -1,0 +1,15 @@
+# 开发环境配置文件模板
+# 请复制此文件为 application-dev.yml 并填入真实的配置信息
+
+# 对象存储配置（腾讯云COS）
+cos:
+  client:
+    host: https://your-bucket.cos.ap-guangzhou.myqcloud.com
+    secretId: your-secret-id
+    secretKey: your-secret-key
+    region: your-bucket.cos.ap-guangzhou.myqcloud.com
+    bucket: your-bucket-name
+
+# 阿里云 AI 配置
+aliYunAi:
+  apiKey: your-api-key
