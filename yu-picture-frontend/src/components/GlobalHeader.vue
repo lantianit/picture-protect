@@ -51,14 +51,24 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { computed, ref } from 'vue'
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { message } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 import { useLoginUserStore } from '@/stores/useLoginUserStore.ts'
 import { userLogoutUsingPost } from '@/api/userController.ts'
+import { menuConfig, filterMenusByPermission, convertToAntMenuItems } from '@/constants/menu.ts'
 
 const loginUserStore = useLoginUserStore()
 
+// 根据用户权限过滤菜单项
+const filteredMenus = computed(() => {
+  const isAdmin = loginUserStore.loginUser?.userRole === 'admin'
+  return filterMenusByPermission(menuConfig, isAdmin)
 })
 
+// 转换为 Ant Design Menu 格式
+const items = computed(() => convertToAntMenuItems(filteredMenus.value))
 
 const router = useRouter()
 // 当前要高亮的菜单项
@@ -69,6 +79,7 @@ router.afterEach((to, from, next) => {
 })
 
 // 路由跳转事件
+const doMenuClick = ({ key }: { key: string }) => {
   router.push({
     path: key,
   })

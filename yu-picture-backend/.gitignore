@@ -1,6 +1,15 @@
 ### Custom ###
+# 敏感配置文件
 application-local.yml
+application-dev.yml
 application-prod.yml
+application-test.yml
+
+# 环境变量文件
+.env
+.env.local
+.env.development
+.env.production
 
 HELP.md
 target/

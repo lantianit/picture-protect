@@ -1,4 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import { menuConfig, convertToRoutes } from '@/constants/menu.ts'
 import UserLoginPage from '@/pages/user/UserLoginPage.vue'
 import UserRegisterPage from '@/pages/user/UserRegisterPage.vue'
 import PictureDetailPage from '@/pages/PictureDetailPage.vue'
@@ -15,6 +16,8 @@ import UserExchangeVipPage from '@/pages/UserExchangeVipPage.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // 从菜单配置生成的路由
+    ...convertToRoutes(menuConfig),
     {
       path: '/user/login',
       name: '用户登录',
